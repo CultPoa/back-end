@@ -26,8 +26,15 @@ uv sync --locked
 Rodar o projeto:
 
 ```bash
-docker-compose -f docker-compose.yml -f deploy/docker-compose.dev.yml --project-directory . up --build
+docker compose -f docker-compose.yml -f deploy/docker-compose.dev.yml --project-directory . up --build
 ```
+
+Para rodar o insert.sql:
+```
+docker compose exec -T db psql -U api -d api < insert.sql
+```
+
+é necessário ter rodado o projeto antes de rodar o insert
 
 ---
 
