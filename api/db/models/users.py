@@ -10,26 +10,38 @@ from fastapi_users.authentication import (
 )
 from fastapi_users.db import SQLAlchemyBaseUserTableUUID, SQLAlchemyUserDatabase
 from sqlalchemy.ext.asyncio import AsyncSession
+from sqlalchemy.orm import Mapped, mapped_column
 
 from api.db.base import Base
 from api.db.dependencies import get_db_session
 from api.settings import settings
 
 
+from sqlalchemy import String
+
 class User(SQLAlchemyBaseUserTableUUID, Base):
-    """Represents a user entity."""
+    __tablename__ = "user"
+
+    name: Mapped[str] = mapped_column(String, nullable=False)
+    image_url: Mapped[str | None] = mapped_column(String, nullable=True)
 
 
 class UserRead(schemas.BaseUser[uuid.UUID]):
     """Represents a read command for a user."""
+    name: str
+    image_url: str | None = None
 
 
 class UserCreate(schemas.BaseUserCreate):
     """Represents a create command for a user."""
+    name: str
+    image_url: str | None = None
 
 
 class UserUpdate(schemas.BaseUserUpdate):
     """Represents an update command for a user."""
+    name: str | None = None
+    image_url: str | None = None
 
 
 class UserManager(UUIDIDMixin, BaseUserManager[User, uuid.UUID]):
