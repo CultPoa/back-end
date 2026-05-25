@@ -36,13 +36,6 @@ docker compose exec -T db psql -U api -d api < insert.sql
 
 é necessário ter rodado o projeto antes de rodar o insert
 
----
-
-Para acessar o backend pelo celular:
-
-```bash
-docker run --net=host -it -e NGROK_AUTHTOKEN="token" ngrok/ngrok:latest http 5173
-```
 
 ---
 
