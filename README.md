@@ -38,6 +38,14 @@ docker compose exec -T db psql -U api -d api < insert.sql
 
 ---
 
+Para acessar o backend pelo celular:
+
+```bash
+docker run --net=host -it -e NGROK_AUTHTOKEN="token" ngrok/ngrok:latest http 5173
+```
+
+---
+
 
 This project was generated using fastapi_template.
 
