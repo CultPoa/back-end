@@ -2,16 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="d9a17ef1-f0d7-4036-a5d5-3c786f4af53b" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/api/db/models/secret_messages.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/api/repository/secret_message_repository.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/api/services/secret_message_service.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/api/web/api/secret_messages/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/api/web/api/secret_messages/request/create_secret_message_request.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/api/web/api/secret_messages/request/get_secret_message_request.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/api/web/api/secret_messages/secret_messages_views.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/back-end.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/back-end.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/api/web/api/router.py" beforeDir="false" afterPath="$PROJECT_DIR$/api/web/api/router.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -44,7 +35,7 @@
     "RunOnceActivity.git.unshallow": "true",
     "RunOnceActivity.typescript.service.memoryLimit.init": "true",
     "codeWithMe.voiceChat.enabledByDefault": "false",
-    "git-widget-placeholder": "secret-messages",
+    "git-widget-placeholder": "main",
     "last_opened_file_path": "/home/lopandolfo/Documentos/repos/back-end/api/web/api/secret_messages/request",
     "nodejs_package_manager_path": "npm",
     "vue.rearranger.settings.migration": "true"
