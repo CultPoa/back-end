@@ -81,6 +81,12 @@ class AbstractRepository(Generic[T], ABC):
         )
         return result.scalars().all()  # type: ignore
 
+    async def count_all(self) -> int:
+        result = await self._session.execute(
+            select(func.count()).select_from(self.__model),
+        )
+        return result.scalar_one()
+
     async def delete(self, obj: T) -> None:
         """
         Deletes the provided object from the database.

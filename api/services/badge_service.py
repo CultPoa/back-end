@@ -7,6 +7,7 @@ from api.db.models.places import PlaceModel
 from api.db.models.users import User
 from api.repository.badge_repository import BadgeRepository
 from api.repository.place_repository import PlaceRepository
+from api.web.api.badges.schemas import BadgeListResponse
 
 
 class BadgeService:
@@ -53,9 +54,23 @@ class BadgeService:
         user: User,
         limit: int = 20,
         offset: int = 0,
-    ) -> list[BadgeModel]:
-        return await self.badge_repository.find_all_by_user(
+    ) -> BadgeListResponse:
+
+        badges: list[BadgeModel] = await self.badge_repository.find_all_by_user(
             user.id,
             limit,
             offset,
         )
+        total: int = await self.place_repository.count_all()
+        unlocked: int = len(badges)
+
+        badges_list = [
+            {
+                "name": badge.place_name,
+                "type": badge.place_type,
+                "createdDate": badge.created_date,
+            }
+            for badge in badges
+        ]
+
+        return BadgeListResponse(total=total, unlocked=unlocked, badges=badges_list)
