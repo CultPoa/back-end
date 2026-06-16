@@ -4,11 +4,12 @@ from fastapi import APIRouter, Depends, Response, status
 from sqlalchemy.ext.asyncio import AsyncSession
 
 from api.db.dependencies import get_db_session
+from api.db.models.badges import BadgeModel
 from api.db.models.users import User, current_active_user
 from api.repository.badge_repository import BadgeRepository
 from api.repository.place_repository import PlaceRepository
 from api.services.badge_service import BadgeService
-from api.web.api.badges.schemas import BadgeUnlockRequest
+from api.web.api.badges.schemas import BadgeUnlockRequest, BadgeListResponse
 
 router = APIRouter()
 
@@ -39,13 +40,4 @@ async def list_badges(
     limit: int = 20,
     offset: int = 0,
 ):
-    badges = await service.list_user_badges(user, limit, offset)
-
-    return [
-        {
-            "name": badge.place_name,
-            "type": badge.place_type,
-            "createdDate": badge.created_date,
-        }
-        for badge in badges
-    ]
+    return await service.list_user_badges(user, limit, offset)
