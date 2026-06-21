@@ -58,15 +58,18 @@ class BadgeService:
 
         badges: list[BadgeModel] = await self.badge_repository.find_all_by_user(
             user.id,
-            limit,
-            offset,
         )
         total: int = await self.place_repository.count_all()
         unlocked: int = len(badges)
 
         badges_list = [
             {
+                "id": str(badge.id),
                 "name": badge.place_name,
+                "description": "Explorador Cultural",
+                "unlocked": True,
+                "progress": 1,
+                "goal": 1,
                 "type": badge.place_type,
                 "createdDate": badge.created_date,
             }

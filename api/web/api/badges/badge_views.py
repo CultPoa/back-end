@@ -1,4 +1,4 @@
-from typing import Annotated
+from typing import Annotated, List
 
 from fastapi import APIRouter, Depends, Response, status
 from sqlalchemy.ext.asyncio import AsyncSession
@@ -33,11 +33,9 @@ async def unlock_badge(
     return Response(status_code=status.HTTP_204_NO_CONTENT)
 
 
-@router.get("/badge")
+@router.get("/badge", response_model=BadgeListResponse)  # Added response_model
 async def list_badges(
     user: Annotated[User, Depends(current_active_user)],
     service: Annotated[BadgeService, Depends(get_service)],
-    limit: int = 20,
-    offset: int = 0,
 ):
-    return await service.list_user_badges(user, limit, offset)
+    return await service.list_user_badges(user)
