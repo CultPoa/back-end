@@ -26,3 +26,7 @@ async def create_place(
 @router.get("/places")
 async def list_places(service: Annotated[PlaceService, Depends(get_service)]):
     return await service.list_places()
+
+@router.get("/places/")
+async def list_places(place_id: str, service: Annotated[PlaceService, Depends(get_service)]):
+    return await service.get_place_data(place_id)

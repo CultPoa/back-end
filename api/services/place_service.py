@@ -12,3 +12,6 @@ class PlaceService:
 
     async def list_places(self) -> list[PlaceModel]:
         return await self.repository.find_all(limit=999)
+
+    async def get_place_data(self, placeId):
+        return await self.repository.find_by_id(placeId)
