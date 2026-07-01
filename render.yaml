@@ -1,0 +1,25 @@
+services:
+  - type: web
+    name: fastapi-app
+    env: python
+    plan: free
+    region: oregon
+
+    # buildCommand: pip install uv && poetry config virtualenvs.create false && poetry install
+    # startCommand: poetry run python -m ga_api
+
+    buildCommand: pip install uv && uv sync --locked
+    startCommand: uv run -m api
+    envVars:
+      - key: DATABASE_URL
+        fromDatabase:
+          name: fastapi-db
+          property: connectionString
+
+databases:
+  - name: fastapi-db
+    plan: free
+    region: oregon
+
+# uv sync --locked
+# uv run -m api

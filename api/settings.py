@@ -48,13 +48,29 @@ class Settings(BaseSettings):
     db_base: str = "admin"
     db_echo: bool = False
 
+    # @property
+    # def db_url(self) -> URL:
+    #     """
+    #     Assemble database URL from settings.
+
+    #     :return: database URL.
+    #     """
+    #     return URL.build(
+    #         scheme="postgresql+asyncpg",
+    #         host=self.db_host,
+    #         port=self.db_port,
+    #         user=self.db_user,
+    #         password=self.db_pass,
+    #         path=f"/{self.db_base}",
+    #     )
+
     @property
     def db_url(self) -> URL:
-        """
-        Assemble database URL from settings.
-
-        :return: database URL.
-        """
+        db_url = os.getenv("DATABASE_URL")
+        if db_url:
+            if db_url.startswith("postgres://"):
+                db_url = db_url.replace("postgres://", "postgresql+asyncpg://", 1)
+            return URL(db_url)
         return URL.build(
             scheme="postgresql+asyncpg",
             host=self.db_host,
